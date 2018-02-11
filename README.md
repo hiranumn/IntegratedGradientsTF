@@ -17,6 +17,8 @@ with tf.variable_scope("predictor"):
 
 Add the following code to build integrated gradients into your model:
 ```Python
+import integrated_gradients_tf as ig
+
 inter, stepsize, ref = ig.linear_inpterpolation(x, num_steps=50)
 with tf.variable_scope("predictor", reuse=True):
     dense2 = inter
@@ -24,6 +26,10 @@ with tf.variable_scope("predictor", reuse=True):
         dense2 = tf.contrib.slim.fully_connected(dense2, dim, activation_fn=tf.nn.relu)
     dense2 = tf.contrib.slim.fully_connected(dense2, 10, activation_fn=tf.identity)
     prediction2 = tf.nn.softmax(dense2)
+    
+explanations = []
+for i in range(10):
+    explanations.append(ig.build_ig(inter, stepsize, prediction2[:, i], num_steps=50))
 ```
 
 # Tips:
