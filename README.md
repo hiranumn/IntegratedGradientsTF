@@ -33,10 +33,10 @@ for i in range(10):
 ```
 
 # Tips:
-- make sure to set ```reuse=True``` to reuse weights
-- see example.ipynb and util.py for more complete example.
-- see https://github.com/hiranumn/IntegratedGradients for Keras implementation of this.
-- You can easily chance your code to explain hiddenlayer activations.
+- Make sure to set ```reuse=True``` to reuse weights
+- See example.ipynb and util.py for more complete example.
+- See https://github.com/hiranumn/IntegratedGradients for Keras implementation of this.
+- You can easily change your code to explain hidden layer activations.
 
 # References
 1. Sundararajan, Mukund, Ankur Taly, and Qiqi Yan. "Axiomatic Attribution for Deep Networks." arXiv preprint arXiv:1703.01365 (2017).
