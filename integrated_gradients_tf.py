@@ -42,19 +42,20 @@ def linear_inpterpolation(sample, num_steps=50):
 #        _output: output tensor to be explained. It needs to be connected to samples.
 # OUTPUT: explanations: A list of tensors with explanation values. 
 
-def build_ig(samples, stepsize, _output, num_steps=50):
+def build_ig(samples, stepsizes, _output, num_steps=50):
     grads = tf.gradients(ys=_output, xs=samples)
     
     flag = False
     
     if not isinstance(samples, list):
         samples = [samples]
+        stepsizes = [stepsizes]
         flag=True
     
     # Estimate riemann sum
     output = []
     for i in range(len(samples)):
-        s = samples[i]
+        s = stepsizes[i]
         g = grads[i]
         riemann = tf.multiply(s, g)
         riemann = tf.reshape(riemann, shape=[num_steps,-1]+[int(s) for s in s.get_shape()[1:]])
